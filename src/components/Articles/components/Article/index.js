@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import './Article.scss';
 
-export function Article({ title, description, author }) {
+export function Article({ title, description, author, articleId }) {
   return (
     <div className="article">
       <div className="article__header">
@@ -12,6 +13,7 @@ export function Article({ title, description, author }) {
       <div className="article__footer">
         <div className="article__author">Author: {author}</div>
       </div>
+      <Link to={`/articles-info/${articleId}`}>Open full description</Link>
     </div>
   )
 }
