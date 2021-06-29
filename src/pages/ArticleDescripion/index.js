@@ -3,7 +3,7 @@ import { articles } from '../../data';
 
 export const ArticleDescription = () => {
   const { articleId } = useParams();
-  const article = articles.find((article) => article.articleId === articleId);
+  const article = articles.find((article) => article.articleId === Number(articleId));
 
   return (
     <p>{article?.description}</p>

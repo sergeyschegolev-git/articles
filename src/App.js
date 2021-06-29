@@ -4,14 +4,15 @@ import { About } from './pages/About';
 import { ArticlesInfo } from './pages/ArticlesInfo';
 import { ArticleDescription } from './pages/ArticleDescripion';
 import { PageNotFound } from './pages/PageNotFound';
+import { TagsPage } from './pages/Tags';
 import './App.css';
 
 function App() {
   return (
     <>
       <Header />
-      <Switch>
-        <div className="wrapper">
+      <div className="wrapper">
+        <Switch>
           <Route path="/" exact>
             <Redirect to="/articles-info" />
           </Route>
@@ -21,14 +22,17 @@ function App() {
           <Route path="/articles-info/:articleId">
             <ArticleDescription />
           </Route>
+          <Route path="/tags">
+            <TagsPage />
+          </Route>
           <Route path="/about">
             <About />
           </Route>
           <Route path="*">
             <PageNotFound />
           </Route>
-        </div>
-      </Switch>
+        </Switch>
+      </div>
     </>
   );
 }

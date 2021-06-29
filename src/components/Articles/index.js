@@ -49,7 +49,7 @@ export function Articles({ articles: articlesMock }) {
 
   return (
     <div className="articles">
-      <Button label="Open form" onClick={openFormHandler} />
+      {/*<Button label="Open form" onClick={openFormHandler} />*/}
 
       {isFormOpened && (
         <NewArticleForm
