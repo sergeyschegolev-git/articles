@@ -3,39 +3,50 @@ import { v4 } from 'uuid';
 import { TagsList } from './components/TagsList';
 import { AddTagForm } from './components/AddTagForm';
 import { Notification } from './components/Notification';
+import { StyledTags } from './styled';
 
 export const Tags = ({ tags: defaultTags }) => {
   const [tags, setTags] = useState(defaultTags);
-  const [removedTag, setRemovedTag] = useState('');
-  const [isNotificationShown, setIsNotificationShown] = useState(false);
+  const [removedTag, setRemoveTag] = useState('');
+  const [isTagCreated, setIsTagCreated] = useState(false);
 
-  const addTagHandler = ({ tag }) => {
+  const addTagHandler = (tag) => {
     setTags([
-      { label: tag, id: v4() },
+      {label: tag, id: v4()},
       ...tags,
-    ])
+    ]);
+    setIsTagCreated(true);
   }
 
-  const removeTagHandler = ({ tagId }) => {
-    const tagToRemove = tags.find((tag) => tag.id === tagId);
-    setTags(tags.filter((tag) => tag.id !== tagId));
-    setIsNotificationShown(true);
-    setRemovedTag(tagToRemove.label);
+  const tagRemoveHandler = (tagId, label) => {
+    setTags(tags.filter(({ id }) => id !== tagId));
+    setRemoveTag(label);
   }
 
   const closeNotificationHandler = () => {
-    setIsNotificationShown(false);
-    setRemovedTag('');
+    setRemoveTag('');
+  };
+
+  const closeAddTagNotificationHandler = () => {
+    setIsTagCreated(false);
   }
 
   return (
-    <>
+    <StyledTags>
       <AddTagForm onAddTag={addTagHandler} />
-      <TagsList tags={tags} onTagRemove={removeTagHandler} />
+      <TagsList tags={tags} onTagRemove={tagRemoveHandler} />
 
-      {isNotificationShown && (
-        <Notification removedTag={removedTag} onClose={closeNotificationHandler} />
+      {isTagCreated && (
+        <Notification onClose={closeAddTagNotificationHandler}>
+          <p><strong>NEW TAG WAS CREATED!!!!!</strong></p>
+        </Notification>
       )}
-    </>
+
+      {removedTag && (
+        <Notification onClose={closeNotificationHandler}>
+          <p>You've just removed {removedTag}.</p>
+        </Notification>
+      )}
+    </StyledTags>
   )
 }

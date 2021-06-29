@@ -4,14 +4,15 @@ import cross from './cross.svg';
 import { TagPropType } from '../../propTypes';
 
 export const Tag = ({ tag, onTagRemove }) => {
-  const clickHandler = () => {
-    onTagRemove({ tagId: tag.id })
+
+  const removeHandler = () => {
+    onTagRemove(tag.id, tag.label);
   }
 
   return (
     <StyledTag>
       {tag.label}
-      <button onClick={clickHandler}>
+      <button onClick={removeHandler}>
         <img src={cross} />
       </button>
     </StyledTag>

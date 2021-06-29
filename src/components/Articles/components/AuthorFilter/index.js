@@ -1,6 +1,7 @@
+import { memo } from 'react';
 import './index.scss';
 
-export const AuthorFilter = ({ authors, onFilter }) => {
+export const AuthorFilterComponent = ({ authors, onFilter }) => {
   const handleSelect = (e) => {
     onFilter(e.target.value);
   }
@@ -21,3 +22,5 @@ export const AuthorFilter = ({ authors, onFilter }) => {
     </div>
   )
 }
+
+export const AuthorFilter = memo(AuthorFilterComponent);

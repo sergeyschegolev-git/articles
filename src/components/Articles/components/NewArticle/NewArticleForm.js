@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import './NewArticleForm.scss';
 
-export const NewArticleForm = ({ onArticleCreate, onFormClose }) => {
+const NewArticleFormComponent = ({ onArticleCreate, onFormClose }) => {
   const [author, setAuthor] = useState('');
   const [description, setDescription] = useState('');
   const [title, setTitle] = useState('');
@@ -56,3 +56,5 @@ export const NewArticleForm = ({ onArticleCreate, onFormClose }) => {
     </form>
   )
 }
+
+export const NewArticleForm = memo(NewArticleFormComponent);

@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { compose } from '../../utils/compose';
 import { Button } from '../UI/Button';
-import { NewArticleForm } from './components/NewArticle';
+// import { NewArticleForm } from './components/NewArticle';
+import { NewArticleForm } from './components/NewArticle/NewArticleFormClass';
 import { Search } from './components/Search';
 import { AuthorFilter } from './components/AuthorFilter';
 import { ArticlesList } from './components/ArticlesList';
@@ -19,28 +20,30 @@ export function Articles({ articles: articlesMock }) {
     setSearchedValue(value);
   }
 
-  const authorFilterHandler = (author) => {
+  const authorFilterHandler = useCallback((author) => {
     setAuthor(author);
-  }
+  }, [setAuthor]);
 
-  const authors = articles.map((article) => article.author);
+  const authors = useMemo(() => {
+    return articles.map((article) => article.author);
+  }, [articles]);
 
-  const createArticleHandler = ({ author, description, title }) => {
+  const createArticleHandler = useCallback(({ author, description, title }) => {
     const newArticle = { author, description, title, articleId: articlesMock.length + 1 };
     setArticles([
       newArticle,
       ...articles
     ]);
     setIsFormOpened(false);
-  }
+  }, [setArticles, articles, setIsFormOpened]);
 
   const openFormHandler = () => {
     setIsFormOpened(true);
   }
 
-  const closeFormHandler = () => {
+  const closeFormHandler = useCallback(() => {
     setIsFormOpened(false);
-  };
+  }, [setIsFormOpened]);
 
   const filteredArticles = compose(
     filterByAuthor(searchedAuthor),
@@ -49,14 +52,15 @@ export function Articles({ articles: articlesMock }) {
 
   return (
     <div className="articles">
-      {/*<Button label="Open form" onClick={openFormHandler} />*/}
+      <Button label="Open form" onClick={openFormHandler} />
 
       {isFormOpened && (
         <NewArticleForm
           onArticleCreate={createArticleHandler}
           onFormClose={closeFormHandler}
-        />)
-      }
+          customProps='props'
+        />
+      )}
 
       <div className="articles__controls">
         <Search onSearch={searchHandler} />

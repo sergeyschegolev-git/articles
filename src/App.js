@@ -11,28 +11,28 @@ function App() {
   return (
     <>
       <Header />
-      <div className="wrapper">
-        <Switch>
-          <Route path="/" exact>
-            <Redirect to="/articles-info" />
-          </Route>
-          <Route path="/articles-info" exact>
-            <ArticlesInfo />
-          </Route>
-          <Route path="/articles-info/:articleId">
-            <ArticleDescription />
-          </Route>
-          <Route path="/tags">
-            <TagsPage />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="*">
-            <PageNotFound />
-          </Route>
-        </Switch>
-      </div>
+        <div className="wrapper">
+          <Switch>
+            <Route path="/" exact>
+              <Redirect to="/articles-info" />
+            </Route>
+            <Route path="/articles-info" exact>
+              <ArticlesInfo />
+            </Route>
+            <Route path="/articles-info/:articleId">
+              <ArticleDescription />
+            </Route>
+            <Route path="/tags">
+              <TagsPage />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
+        </div>
     </>
   );
 }

@@ -7,7 +7,9 @@ export const StyledNotification = styled.div`
   border-radius: 2px;
   max-width: 200px;
   margin-top: 12px;
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 
   button {
     padding: 0;

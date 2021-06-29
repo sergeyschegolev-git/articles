@@ -16,7 +16,7 @@ export const TagsList = ({ tags, onTagRemove }) => {
   )
 }
 
-TagsList.propType = {
+TagsList.propTypes = {
   tags: TagsPropType.isRequired,
   onTagRemove: PropTypes.func.isRequired,
 }
