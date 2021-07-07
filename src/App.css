@@ -1,4 +1,9 @@
 .wrapper {
-  width: 600px;
+  width: 800px;
   margin: 20px auto 0;
+  display: flex;
+}
+
+.main {
+  width: 500px;
 }

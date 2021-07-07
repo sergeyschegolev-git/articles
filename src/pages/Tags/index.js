@@ -2,8 +2,10 @@ import { Tags } from '../../components/Tags';
 import { tagsMock } from '../../tags';
 
 
-export const TagsPage = () => {
+export const TagsPage = ({ onClick }) => {
   return (
-    <Tags tags={tagsMock} />
+    <>
+      <Tags tags={tagsMock} />
+    </>
   )
 }

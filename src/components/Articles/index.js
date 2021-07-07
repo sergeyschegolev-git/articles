@@ -1,16 +1,16 @@
 import { useState, useCallback, useMemo } from 'react';
 import { compose } from '../../utils/compose';
 import { Button } from '../UI/Button';
-// import { NewArticleForm } from './components/NewArticle';
-import { NewArticleForm } from './components/NewArticle/NewArticleFormClass';
+import { NewArticleForm } from './components/NewArticle';
 import { Search } from './components/Search';
 import { AuthorFilter } from './components/AuthorFilter';
 import { ArticlesList } from './components/ArticlesList';
 import { ArticlesNotFound } from './components/ArticlesNotFound';
+import { ArticlesHeader } from './components/styled';
 import { filterByAuthor, filterByDescription } from './utils';
 import './Articles.scss';
 
-export function Articles({ articles: articlesMock }) {
+export function Articles({ articles: articlesMock, tags }) {
   const [articles, setArticles] = useState(articlesMock);
   const [searchedValue, setSearchedValue] = useState('');
   const [searchedAuthor, setAuthor] = useState('');
@@ -52,20 +52,22 @@ export function Articles({ articles: articlesMock }) {
 
   return (
     <div className="articles">
-      <Button label="Open form" onClick={openFormHandler} />
+      <ArticlesHeader>
+        <div className="articles__controls">
+          <Search onSearch={searchHandler} />
+          <AuthorFilter authors={authors} onFilter={authorFilterHandler} />
+        </div>
+
+        <Button label="Create article" onClick={openFormHandler} />
+      </ArticlesHeader>
 
       {isFormOpened && (
         <NewArticleForm
           onArticleCreate={createArticleHandler}
           onFormClose={closeFormHandler}
-          customProps='props'
+          tags={tags}
         />
       )}
-
-      <div className="articles__controls">
-        <Search onSearch={searchHandler} />
-        <AuthorFilter authors={authors} onFilter={authorFilterHandler} />
-      </div>
 
       {filteredArticles.length ? (
         <ArticlesList articles={filteredArticles} />

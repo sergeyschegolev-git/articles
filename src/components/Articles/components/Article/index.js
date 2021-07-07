@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom';
+import { StyledLink, StyledCard } from './styled';
 import './Article.scss';
 
 export function Article({ title, description, author, articleId }) {
   return (
-    <div className="article">
+    <StyledCard>
       <div className="article__header">
         <h3>{title}</h3>
       </div>
@@ -13,7 +13,7 @@ export function Article({ title, description, author, articleId }) {
       <div className="article__footer">
         <div className="article__author">Author: {author}</div>
       </div>
-      <Link to={`/articles-info/${articleId}`}>Open full description</Link>
-    </div>
+      <StyledLink to={`/articles-info/${articleId}`}>Open full description</StyledLink>
+    </StyledCard>
   )
 }

@@ -1,7 +1,5 @@
-import PropTypes from 'prop-types';
 import { StyledTag } from './styled';
 import cross from './cross.svg';
-import { TagPropType } from '../../propTypes';
 
 export const Tag = ({ tag, onTagRemove }) => {
 
@@ -17,9 +15,4 @@ export const Tag = ({ tag, onTagRemove }) => {
       </button>
     </StyledTag>
   )
-}
-
-Tag.propTypes = {
-  tag: TagPropType.isRequired,
-  onTagRemove: PropTypes.func.isRequired,
 }

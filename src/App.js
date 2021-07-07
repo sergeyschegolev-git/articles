@@ -1,5 +1,6 @@
 import { Route, Switch, Redirect } from "react-router-dom";
 import { Header } from './components/Header';
+import { Aside } from './components/Aside';
 import { About } from './pages/About';
 import { ArticlesInfo } from './pages/ArticlesInfo';
 import { ArticleDescription } from './pages/ArticleDescripion';
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       <Header />
-        <div className="wrapper">
+      <div className="wrapper">
+        <main className="main">
           <Switch>
             <Route path="/" exact>
               <Redirect to="/articles-info" />
@@ -32,7 +34,9 @@ function App() {
               <PageNotFound />
             </Route>
           </Switch>
-        </div>
+        </main>
+        <Aside />
+      </div>
     </>
   );
 }
